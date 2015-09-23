@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Scorer</string>
+    <string name="action_clearAll">Clear All</string>
+    <string name="action_clearScores">Clear All Scores</string>
+    <string name="action_AZ">Sort A to Z</string>
+    <string name="action_HighLow">Sort High to Low</string>
+    <string name="action_Undo">Undo Sort</string>
+
+    <string name="title_activity_player_details">Player Details</string>
+    <string name="edit_undo_title">Undo?</string>
+    <string name="edit_undo_message">Are you sure you want to revert your changes?</string>
+    <string name="edit_delete_title">Delete Player?</string>
+    <string name="edit_delete_message">Are you sure you want to permanently delete this player?</string>
+    <string name="save_changes_title">Save Changes?</string>
+    <string name="save_changes_message">You have made edits. Save changes before returning?</string>
+
+</resources>

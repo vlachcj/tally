@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".TotalsDisplay">
+    <item android:id="@+id/action_clearScores" android:title="@string/action_clearScores"></item>
+    <item android:id="@+id/action_clearAll" android:title="@string/action_clearAll"></item>
+    <item android:id="@+id/action_sortAZ" android:title="@string/action_AZ"></item>
+    <item android:id="@+id/action_sortHighLow" android:title="@string/action_HighLow"></item>
+    <item android:id="@+id/action_sortUndo" android:title="@string/action_Undo"></item>
+
+</menu>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="140dp">
+
+    <me.grantland.widget.AutofitTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:id="@+id/addedScore"
+        android:padding="5dp"
+        android:text="next val"
+        android:paddingRight="140dp"
+        android:gravity="right" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/h_line"
+        android:id="@+id/horizontalLine"
+        android:layout_gravity="right" />
+    <me.grantland.widget.AutofitTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:id="@+id/newTotal"
+        android:padding="5dp"
+        android:paddingRight="140dp"
+        android:text="total"
+        android:gravity="right" />
+</LinearLayout>
