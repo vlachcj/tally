@@ -1,8 +1,5 @@
 package com.example.vlachbear.scorer;
 
-/**
- * Created by vlachbear on 8/28/15.
- */
 public class Utilities {
 
     public final static String NAME_KEY = "playerName";

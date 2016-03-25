@@ -8,13 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.vlachbear.scorer.PlayerData;
-
 import java.util.Comparator;
 
-/**
- * Created by vlachbear on 8/20/15.
- */
 public class ScoreAdapter extends ArrayAdapter<PlayerData> {
     Boolean isAZ = false;
     Boolean isHighLow = false;

@@ -2,9 +2,6 @@ package com.example.vlachbear.scorer;
 
 import java.util.ArrayList;
 
-/**
- * Created by vlachbear on 8/26/15.
- */
 public class ScoreData {
     public ArrayList<PlayerData> playerDatas;
 

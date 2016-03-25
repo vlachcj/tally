@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
@@ -18,16 +17,11 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewSwitcher;
+
 import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-
 
 public class MainActivity extends ActionBarActivity {
 
@@ -339,7 +333,6 @@ public class MainActivity extends ActionBarActivity {
         checkMenu();
     }
 
-
     //DISPLAY TOTALS VIEW
 
     public void addPlayerClick(View v) {
@@ -442,9 +435,6 @@ public class MainActivity extends ActionBarActivity {
         getSupportActionBar().hide();
     }
 
-
-
-
     //UPDATE SCORES VIEW
     View.OnClickListener updateScoresListener = new View.OnClickListener() {
         @Override
@@ -513,7 +503,6 @@ public class MainActivity extends ActionBarActivity {
                     viewSwitcher.showPrevious();
                     getSupportActionBar().show();
                 }
-
             }
         }
     };

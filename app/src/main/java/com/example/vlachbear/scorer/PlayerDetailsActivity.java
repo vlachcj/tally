@@ -1,23 +1,16 @@
 package com.example.vlachbear.scorer;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.inputmethodservice.InputMethodService;
+import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -25,7 +18,6 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import java.util.ArrayList;
-
 
 public class PlayerDetailsActivity extends ActionBarActivity {
 
@@ -202,6 +194,12 @@ public class PlayerDetailsActivity extends ActionBarActivity {
     }
 
     private void switchViewToEdit() {
+        editAdapter.updatedScores = player.scoreCopy();
+        editAdapter.total = player.total;
+        editAdapter.clear();
+        editAdapter.addAll(player.scores);
+        editAdapter.notifyDataSetChanged();
+
         editButton.setVisibility(View.GONE);
         confirmButton.setVisibility(View.VISIBLE);
         undoButton.setVisibility(View.VISIBLE);
@@ -328,49 +326,47 @@ public class PlayerDetailsActivity extends ActionBarActivity {
                 if (editAdapter.edited) {
                     edited = true;
                     editAdapter.edited = false;
-                    player.total = 0;
-                    for (int i = 0; i < editAdapter.getCount(); i++) {
-                        String s = ((EditText)scoresEditView.getChildAt(i).findViewById(R.id.points)).getText().toString();
-                        if (s.isEmpty())
-                            s = "0";
-                        Integer updatedScore = Integer.parseInt(s);
-                        player.total += updatedScore;
-                        player.scores.set(i, updatedScore);
-                    }
+
+                    player.scores = editAdapter.updatedScores;
+                    player.total = editAdapter.total;
+
                     adapter.clear();
                     adapter.addAll(player.scores);
                     adapter.notifyDataSetChanged();
-
-                    totalView.setText(player.total.toString());
                 }
                 switchViewToMain();
             } else if (v.getId() == R.id.detailsUndo) {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(PlayerDetailsActivity.this);
+                if (nameEdited || editAdapter.edited) {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(PlayerDetailsActivity.this);
 
-                alertDialogBuilder.setTitle(R.string.edit_undo_title);
-                alertDialogBuilder.setMessage(R.string.edit_undo_message);
-                alertDialogBuilder
-                        .setPositiveButton("Continue",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        nameView.setText(player.name);
-                                        totalView.setText(player.total.toString());
-                                        nameEdited = false;
-                                        editAdapter.edited = false;
+                    alertDialogBuilder.setTitle(R.string.edit_undo_title);
+                    alertDialogBuilder.setMessage(R.string.edit_undo_message);
+                    alertDialogBuilder
+                            .setPositiveButton("Yes",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            nameView.setText(player.name);
+                                            totalView.setText(player.total.toString());
+                                            nameEdited = false;
+                                            editAdapter.edited = false;
 
-                                        switchViewToMain();
-                                    }
-                                })
-                        .setNegativeButton("Cancel",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
+                                            switchViewToMain();
+                                        }
+                                    })
+                            .setNegativeButton("Cancel",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
 
-                                        dialog.cancel();
-                                    }
-                                });
+                                            dialog.cancel();
+                                        }
+                                    });
 
-                final AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
+                    final AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                }
+                else {
+                    switchViewToMain();
+                }
             }
         }
     };

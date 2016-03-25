@@ -3,9 +3,6 @@ package com.example.vlachbear.scorer;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by vlachbear on 8/20/15.
- */
 public class PlayerData implements Serializable {
     String name;
     Integer total;
@@ -37,5 +34,12 @@ public class PlayerData implements Serializable {
     public void addScore(Integer score) {
         total += score;
         scores.add(score);
+    }
+    public ArrayList<Integer> scoreCopy() {
+        ArrayList<Integer> copy = new ArrayList<>();
+        for (int i = 0; i < scores.size(); i++) {
+            copy.add(scores.get(i));
+        }
+        return copy;
     }
 }

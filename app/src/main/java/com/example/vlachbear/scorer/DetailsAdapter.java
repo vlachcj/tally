@@ -1,19 +1,15 @@
 package com.example.vlachbear.scorer;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-/**
- * Created by vlachbear on 8/28/15.
- */
 public class DetailsAdapter extends ArrayAdapter<Integer> {
 
-    Integer partialTotal = 0;
+    int partialTotal = 0;
     public DetailsAdapter(Context context) {
         super(context, android.R.layout.simple_list_item_1);
     }

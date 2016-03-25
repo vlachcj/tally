@@ -1,6 +1,5 @@
 package com.example.vlachbear.scorer;
 
-import android.app.Activity;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,15 +12,15 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 
-/**
- * Created by vlachbear on 9/7/15.
- */
+import java.util.ArrayList;
+
 public class EditAdapter extends ArrayAdapter<Integer> {
 
     Boolean edited = false;
     Context context;
     TextView totalView;
     Integer total;
+    ArrayList<Integer> updatedScores;
 
     public EditAdapter(Context c, TextView tv) {
         super(c, android.R.layout.simple_list_item_1);
@@ -46,7 +45,6 @@ public class EditAdapter extends ArrayAdapter<Integer> {
         pointsView.setText(Integer.toString(getItem(position)));
 
         pointsView.addTextChangedListener(new TextWatcher() {
-            int prevVal = getItem(position);
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -58,17 +56,24 @@ public class EditAdapter extends ArrayAdapter<Integer> {
 
             @Override
             public void afterTextChanged(Editable e) {
-                Log.d("edit adapter", "edited");
-                edited = true;
+                //parse new value
                 String s = e.toString();
-                int val;
+                Integer updatedVal;
                 if (s.isEmpty() || s.equals("-")) {
-                    val = 0;
+                    updatedVal = 0;
                 } else
-                    val = Integer.parseInt(s);
-                total = total + val - prevVal;
-                prevVal = val;
-                totalView.setText(total.toString());
+                    updatedVal = Integer.parseInt(s);
+                //has it changed?
+                Integer prevVal = updatedScores.get(position);
+                if (!updatedVal.equals(prevVal)) {
+                    Log.d("edit adapter", "edited");
+                    edited = true;
+                    //update total
+                    total = total + updatedVal - prevVal;
+                    totalView.setText(total.toString());
+                    //update score data
+                    updatedScores.set(position, updatedVal);
+                }
             }
         });
 
